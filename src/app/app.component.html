@@ -2,100 +2,55 @@
 
 <div class="main">
   <div>
-    <div class="stores-header">
-      <h2>Tiendas</h2>
-      <p-button severity="danger" label="Agrergar tienda" />
-    </div>
+    <h2>Tienda</h2>
+    <p class="m-0">Dirección de la tienda</p>
+
     <div class="store-cards">
-      <p-card>
-        <div class="store-card">
-          <h3>Punto de venta</h3>
-          <p class="m-0">Dirección de la tienda</p>
-          <div class="buttons-section">
-            <p-button
-              severity="success"
-              label="Entrada de producto"
-              (click)="openProductIncomeModal()"
-            />
-            <p-button
-              severity="danger"
-              label="Salida producto"
-              (click)="openProductOutModal()"
-            />
-          </div>
+      <p-card header="Ingresar producto">
+        <div class="modal">
+          <p-dropdown
+            [style]="{ width: '100%' }"
+            placeholder="Selecciona un producto"
+          />
+          <input
+            [style]="{ width: '100%' }"
+            type="number"
+            pInputText
+            placeholder="Ingresa la cantidad"
+          />
+        </div>
+        <div class="buttons-section">
+          <p-button
+            label="Ingresar"
+            severity="success"
+            (click)="sendProductIncomeData()"
+          />
+        </div>
+      </p-card>
+      <p-card header="Retirar producto">
+        <div class="modal">
+          <p-dropdown
+            [style]="{ width: '100%' }"
+            placeholder="Selecciona un producto"
+          />
+          <input
+            [style]="{ width: '100%' }"
+            type="number"
+            pInputText
+            placeholder="Ingresa la cantidad"
+          />
+        </div>
+        <div class="buttons-section">
+          <p-button
+            label="Retirar"
+            severity="success"
+            (click)="sendProductOutData()"
+          />
         </div>
       </p-card>
     </div>
   </div>
 </div>
-
-<p-dialog
-  header="Ingresar Producto"
-  [modal]="true"
-  [(visible)]="productIncomeModalIsVisible"
-  [style]="{ width: '25rem' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="modal">
-    <p-dropdown
-      [style]="{ width: '100%' }"
-      placeholder="Selecciona un producto"
-    />
-    <input
-      [style]="{ width: '100%' }"
-      type="number"
-      pInputText
-      placeholder="Ingresa la cantidad"
-    />
-  </div>
-  <div class="buttons-section">
-    <p-button
-      label="Cancelar"
-      severity="danger"
-      (click)="closeProductIncomeModal()"
-    />
-    <p-button
-      label="Ingresar"
-      severity="success"
-      (click)="sendProductIncomeData()"
-    />
-  </div>
-</p-dialog>
-
-<p-dialog
-  header="Retirar Producto"
-  [modal]="true"
-  [(visible)]="productOutModalIsVisible"
-  [style]="{ width: '25rem' }"
-  [draggable]="false"
-  [resizable]="false"
->
-  <div class="modal">
-    <p-dropdown
-      [style]="{ width: '100%' }"
-      placeholder="Selecciona un producto"
-    />
-    <input
-      [style]="{ width: '100%' }"
-      type="number"
-      pInputText
-      placeholder="Ingresa la cantidad"
-    />
-  </div>
-  <div class="buttons-section">
-    <p-button
-      label="Cancelar"
-      severity="danger"
-      (click)="closeProductOutModal()"
-    />
-    <p-button
-      label="Retirar"
-      severity="success"
-      (click)="sendProductOutData()"
-    />
-  </div>
-</p-dialog>
 
 <div class="footer"><p>OXXO</p></div>
 <router-outlet />

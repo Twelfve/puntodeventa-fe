@@ -4,7 +4,6 @@ import { ProductService } from './data/services/api/product/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -16,7 +15,6 @@ import { InputTextModule } from 'primeng/inputtext';
     HttpClientModule,
     CardModule,
     ButtonModule,
-    DialogModule,
     DropdownModule,
     InputTextModule,
   ],
@@ -25,9 +23,6 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class AppComponent {
   title = 'puntodeventa-fe';
-
-  productIncomeModalIsVisible: boolean = false;
-  productOutModalIsVisible: boolean = false;
 
   constructor(private productService: ProductService) {}
 
@@ -49,23 +44,7 @@ export class AppComponent {
       });
   }
 
-  openProductIncomeModal() {
-    this.productIncomeModalIsVisible = true;
-  }
-
   sendProductIncomeData() {}
 
-  closeProductIncomeModal() {
-    this.productIncomeModalIsVisible = false;
-  }
-
   sendProductOutData() {}
-
-  openProductOutModal() {
-    this.productOutModalIsVisible = true;
-  }
-
-  closeProductOutModal() {
-    this.productOutModalIsVisible = false;
-  }
 }
