@@ -1,0 +1,85 @@
+.header {
+  background-color: #d5213a;
+  box-sizing: border-box;
+  height: 10vh;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    color: white;
+    border: #fcaf17 2px solid;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  .stores-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .store-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    .store-card {
+      .buttons-section {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-card {
+  border-radius: 1rem;
+  max-width: 25vw;
+  .p-card-content {
+    padding: 0;
+  }
+}
+
+// Modal
+
+.modal {
+  width: 100%;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.footer {
+  background-color: #d5213a;
+  height: 8vh;
+  text-align: end;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  p {
+    margin: 0;
+    color: white;
+  }
+}
