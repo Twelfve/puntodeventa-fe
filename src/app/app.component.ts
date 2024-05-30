@@ -57,7 +57,6 @@ export class AppComponent {
     this.storesService.getStores().subscribe({
       next: (res) => {
         this.stores = res.data;
-        console.log(this.stores);
       },
     });
     this.productService.getProducts().subscribe({

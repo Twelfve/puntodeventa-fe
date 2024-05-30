@@ -2,8 +2,9 @@
 
 <div class="main">
   <div>
-    <h2>Tienda: {{ stores?.nombre_tienda }}</h2>
-    <p class="m-0">Ubicación: {{ stores?.ubicacion }}</p>
+    <h2>Tienda: {{ stores?.stores[0]?.nombre_tienda }}</h2>
+    <p class="m-0">Ubicación: {{ stores?.stores[0]?.ubicacion }}</p>
+    <p class="m-0">Encargado: {{ stores?.user[0]?.nombre }}</p>
 
     <div class="store-cards">
       <p-card header="Ingresar producto">

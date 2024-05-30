@@ -17,8 +17,6 @@ export class StoresService {
       .get<{ msg: string; data: any }>(API_STORES_SERVICES.READ.ALL)
       .pipe(
         map((resp) => {
-          console.log(resp);
-
           response.msg = '';
           response.error = false;
           response.data = resp;
