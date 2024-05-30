@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ProductService } from './data/services/api/product/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
@@ -12,6 +12,9 @@ import { ProductIncomeService } from './data/services/api/productIncome/product-
 import { ProductOutService } from './data/services/api/productOut/product-out.service';
 import { DialogModule } from 'primeng/dialog';
 import { ListboxModule } from 'primeng/listbox';
+import { InventoryService } from './data/services/api/inventory/inventory.service';
+import { NgIf } from '@angular/common';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +29,7 @@ import { ListboxModule } from 'primeng/listbox';
     FormsModule,
     DialogModule,
     ListboxModule,
+    NgIf
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -35,6 +39,8 @@ export class AppComponent {
 
   stores: any;
   products: any;
+  inventoryAux!: any[];
+  inventory!: any[];
 
   productIncome = {
     id_producto: null,
@@ -58,7 +64,9 @@ export class AppComponent {
     private productService: ProductService,
     private storesService: StoresService,
     private productIncomeService: ProductIncomeService,
-    private productOutService: ProductOutService
+    private productOutService: ProductOutService,
+    private inventoryService: InventoryService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +78,8 @@ export class AppComponent {
     this.productService.getProducts().subscribe({
       next: (res) => {
         this.products = res.data;
+        console.log(this.products);
+
       },
     });
   }
@@ -91,12 +101,48 @@ export class AppComponent {
     });
   }
 
-  openInventoryModal() {
+  async openInventoryModal() {
+    await this.inventoryService.getInventory().subscribe({
+      next: (res) => {
+
+        this.inventoryAux = res.data;
+        console.log("antes", this.inventoryAux);
+
+        // this.inventory = this.inventoryAux.map((element:any) => element.producto).flat();
+        // console.log(this.inventoryAux);
+        // // this.inventoryAux.forEach((element:any) => {
+        // //   this.inventory.
+        // //   console.log(element.producto);
+
+        //   // this.inventory.push(element.producto);
+        // // });
+        // console.log(this.inventory);
+
+
+      },
+    });
     this.isModalOpen = true;
   }
   closeInventoryModal() {
     this.isModalOpen = false;
   }
 
-  deleteStorePoducts() {}
+  deleteStorePoducts() {
+    let productsToDelete: any[] = [];
+    this.selectedProducts.forEach((element:any) => {
+      productsToDelete.push(element.id_producto);
+    });
+    console.log(productsToDelete);
+
+    this.inventoryService.deleteProductInventory(productsToDelete).subscribe({
+      next: (res) => {
+        console.log('OK');
+      },
+    });
+    this.closeInventoryModal();
+    console.log(this.selectedProducts);
+    // this.router.navigateByUrl("/");
+    window.location.reload();
+
+  }
 }
