@@ -33,6 +33,9 @@
           />
         </div>
       </p-card>
+
+      <p-button label="Inventario" (click)="openInventoryModal()" />
+
       <p-card header="Retirar producto">
         <div class="modal">
           <p-dropdown
@@ -62,6 +65,34 @@
     </div>
   </div>
 </div>
+
+<p-dialog
+  header="Inventario"
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="isModalOpen"
+  [style]="{ width: '40rem' }"
+>
+  <div>
+    <p-listbox
+      [options]="products"
+      [(ngModel)]="selectedProducts"
+      optionLabel="nombre"
+      [style]="{ width: '100%' }"
+      [multiple]="true"
+      [metaKeySelection]="false"
+    />
+
+    <div class="buttons-section">
+      <p-button
+        [disabled]="selectedProducts.length == 0"
+        label="Eliminar"
+        severity="danger"
+        (click)="deleteStorePoducts()"
+      />
+    </div>
+  </div>
+</p-dialog>
 
 <div class="footer"><p>OXXO</p></div>
 <router-outlet />

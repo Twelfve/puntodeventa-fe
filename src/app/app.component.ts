@@ -10,6 +10,8 @@ import { StoresService } from './data/services/api/stores/stores.service';
 import { FormsModule } from '@angular/forms';
 import { ProductIncomeService } from './data/services/api/productIncome/product-income.service';
 import { ProductOutService } from './data/services/api/productOut/product-out.service';
+import { DialogModule } from 'primeng/dialog';
+import { ListboxModule } from 'primeng/listbox';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,8 @@ import { ProductOutService } from './data/services/api/productOut/product-out.se
     DropdownModule,
     InputTextModule,
     FormsModule,
+    DialogModule,
+    ListboxModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -45,6 +49,10 @@ export class AppComponent {
     fecha_salida: new Date(),
     cantidad_salida: null,
   };
+
+  isModalOpen: boolean = false;
+
+  selectedProducts = [];
 
   constructor(
     private productService: ProductService,
@@ -82,4 +90,13 @@ export class AppComponent {
       },
     });
   }
+
+  openInventoryModal() {
+    this.isModalOpen = true;
+  }
+  closeInventoryModal() {
+    this.isModalOpen = false;
+  }
+
+  deleteStorePoducts() {}
 }
