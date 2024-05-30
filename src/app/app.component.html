@@ -2,8 +2,8 @@
 
 <div class="main">
   <div>
-    <h2>Tienda</h2>
-    <p class="m-0">Dirección de la tienda</p>
+    <h2>Tienda: {{ stores?.nombre_tienda }}</h2>
+    <p class="m-0">Ubicación: {{ stores?.ubicacion }}</p>
 
     <div class="store-cards">
       <p-card header="Ingresar producto">
@@ -11,12 +11,17 @@
           <p-dropdown
             [style]="{ width: '100%' }"
             placeholder="Selecciona un producto"
+            [options]="products"
+            optionLabel="nombre"
+            optionValue="id_producto"
+            [(ngModel)]="productIncome.id_producto"
           />
           <input
             [style]="{ width: '100%' }"
             type="number"
             pInputText
             placeholder="Ingresa la cantidad"
+            [(ngModel)]="productIncome.cantidad_ingreso"
           />
         </div>
         <div class="buttons-section">
@@ -32,12 +37,17 @@
           <p-dropdown
             [style]="{ width: '100%' }"
             placeholder="Selecciona un producto"
+            [options]="products"
+            optionLabel="nombre"
+            optionValue="id_producto"
+            [(ngModel)]="productOut.id_producto"
           />
           <input
             [style]="{ width: '100%' }"
             type="number"
             pInputText
             placeholder="Ingresa la cantidad"
+            [(ngModel)]="productOut.cantidad_salida"
           />
         </div>
         <div class="buttons-section">
